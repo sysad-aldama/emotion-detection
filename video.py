@@ -12,6 +12,20 @@ import numpy as np
 from keras.models import model_from_json
 from keras.preprocessing import image
 
-model = model_from_json()
+model = model_from_json(open('fer.json', 'r').read())
+model.load_weights('fer.h5')
+
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+capture = cv2.VideoCapture(0)
+
+while capture.isOpened():
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+capture.release()
+cv2.destroyAllWindows()
+
+    
+
 
 
